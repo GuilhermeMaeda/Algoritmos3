@@ -1,57 +1,40 @@
-//Aluno: João Paulo Nunes Marques, Ciencia da Computação 4º Semestre
-
-//retornar a quantidade de numeros pares que foi encontrado ao multiplicar o vetor
+import java.io.File;
+import javax.swing.JFileChooser;
 
 public class exercicio02 {
 
-	static int[] vetor;
-	static int contador;
-
 	public static void main(String[] args) {
-
-		// altere o valor do parametro como lhe agrada
-
-		populandoVetor(100);
-
-		calculandoPares();
+		// chamando a class acaoExercicio01
+		acaoExercicio02 eUm = new acaoExercicio02();
+		// chama a função, pega o file desejado, e chama na class runExerciseOne
+		eUm.runExerciseOne(getPathFile());
 
 	}
 
-	// função para preencher a matriz de 0 a x (numero do parametro)
-	public static void populandoVetor(int x) {
+	// função criando ação para escolher o file que sera utilizado como
+	// parametro na classe acaoExercicio01
+	public static final String getPathFile() {
 
-		vetor = new int[x];
+		final JFileChooser fc = new JFileChooser();
+		int returnValue = fc.showOpenDialog(null);
 
-		for (int i = 0; i < vetor.length; i++) {
+		// selecionar o arquivo e abrir
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
 
-			vetor[i] = i;
+			File seleFile = fc.getSelectedFile();
+			return seleFile.getAbsolutePath();
 
-		}
+			// Criei um else para não aparecer erro caso eu faça algo
+			// sem ser escolher um arquivo (por exemplo: fechar no X, apertar
+			// cancelar)
 
-	}
+		} else {
 
-	// função que corre o vetor multiplicando numero por numero
-	// ignorando a volta na leitura da matriz evitando por exemplo 1 x 2 e 2 x 1
-	public static void calculandoPares() {
-
-		for (int i = 0; i < vetor.length; i++) {
-
-			for (int j = i; j < vetor.length; j++) {
-
-				int result = i * j;
-
-				if (result % 2 == 0 && result != 0) {
-
-					contador++;
-
-				}
-
-			}
+			System.exit(0);
 
 		}
 
-		// Imprimindo a quantidade de resultado pares
-		System.out.println("Existe " + contador + " numeros pares entre os produtos");
+		return null;
 
 	}
 

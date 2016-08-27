@@ -13,39 +13,46 @@ public class acaoExercicio03 {
 
 		Scanner in = new Scanner(System.in);
 		File fl = new File(path);
-		String line = null;
-		String[] arrayStringNumber;
+		String[][] cordenada = new String[100000][100];
+		String[] arrayStringNumber = null;
+		int qntLinha = 0;
 
 		try {
 
 			BufferedReader br = new BufferedReader(new FileReader(fl));
 
-			line = br.readLine();
-			// igualando a leitura ao arrayStringNumber e separando posições por
-			// ;
-			arrayStringNumber = line.split(" ");
-			// criando array do tamanho das posições encontradas no
-			// arrayStringNumber
-			int[] arrayNumber = new int[arrayStringNumber.length];
+			String contandoLinha = null;
 
-			// jogando valores nas determinadas posições (populando arrayNumber)
-			for (int i = 0; i < arrayStringNumber.length; i++) {
+			while ((contandoLinha = br.readLine()) != null) {
 
-				arrayNumber[i] = Integer.parseInt(arrayStringNumber[i]);
+				arrayStringNumber = contandoLinha.split(" ");
+
+				for (int i = 0; i < arrayStringNumber.length; i++) {
+
+					cordenada[qntLinha][i] = arrayStringNumber[i];
+
+				}
+
+				qntLinha++;
 
 			}
 
-			//Resolvendo questão: soliciatando coordenada e imprimindo valores equivalentes
-			System.out.println("Insira a coordenada, existem " + "0" + " Linhas e " + (arrayNumber.length - 1) + " Posições");
+			// Resolvendo questão: soliciatando coordenada e imprimindo valores
+			// equivalentes
 			System.out.println("Linha: ");
 			int linha = in.nextInt();
 			System.out.println("Posição: ");
 			int posicao = in.nextInt();
 
-			if (posicao < arrayNumber.length) {
-				System.out.println("\n O valor da coordenada é: " + arrayNumber[posicao]);
-			} else {
-				System.out.println("\n O valor da coordenada é: -1");
+			if (linha <= cordenada.length && posicao <= cordenada.length) {
+
+				if (cordenada[linha][posicao] != null) {
+					System.out.println("O valor da coordenada é: " + cordenada[linha][posicao]);
+				} else {
+					System.out.println("O valor da coordenada é: -1");
+
+				}
+
 			}
 
 			br.close();
