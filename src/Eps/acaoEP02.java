@@ -31,7 +31,7 @@ public class acaoEP02 {
 
 				for (int i = 0; i < arrayStringNumber.length; i++) {
 
-					cordenada[qntLinha][i] = arrayStringNumber[i];
+					cordenada[qntLinha][i] = Integer.parseInt(arrayStringNumber[i];
 
 				}
 
